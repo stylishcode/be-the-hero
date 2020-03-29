@@ -8,9 +8,7 @@ module.exports = {
 
     // incidentes registered
     const [count] = await connection('incidents').count();
-
-    console.log(count);
-
+    
     const incidents = await connection('incidents')
       // Relates the incident entity to the ong entity and joins them, returning data from both
       .join('ongs', 'ong_id', '=', 'incidents.ong_id')
