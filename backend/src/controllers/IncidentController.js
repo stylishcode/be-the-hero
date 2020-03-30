@@ -1,5 +1,4 @@
 const connection = require('../database/connection');
-const crypto = require('crypto');
 
 module.exports = {
   async index(request, response) {
@@ -11,7 +10,7 @@ module.exports = {
     
     const incidents = await connection('incidents')
       // Relates the incident entity to the ong entity and joins them, returning data from both
-      .join('ongs', 'ong_id', '=', 'incidents.ong_id')
+      .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
       .limit(5) // 5 incidents per page
       .offset((page - 1) * 5)
       .select([
